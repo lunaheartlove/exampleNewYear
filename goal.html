@@ -6,7 +6,6 @@
     <title>Happy New Year</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
@@ -19,22 +18,26 @@
         body {
             height: 100vh;
             font-family: 'Mali', cursive;
-            background: linear-gradient(180deg, #f7cfd3, #e6e9f0);
+            background:
+                radial-gradient(circle at top, #ffe4ec, transparent 55%),
+                linear-gradient(180deg, #f7cfd3, #e6e9f0);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #444;
+            color: #4a3a3a;
         }
 
         /* ===== Phone ===== */
         .phone {
             width: 320px;
             height: 600px;
-            border-radius: 32px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            padding: 14px;
+            border-radius: 34px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px);
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            padding: 16px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -44,12 +47,12 @@
         /* ===== PNG Overlay ===== */
         .overlay-img {
             position: absolute;
-            bottom: 0;
+            bottom: -6px;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 320px;
-            opacity: 0.35;
+            opacity: 0.3;
             pointer-events: none;
             z-index: 0;
         }
@@ -62,12 +65,13 @@
         /* ===== Header ===== */
         .header {
             text-align: center;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .header h2 {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         /* ===== Chat Area ===== */
@@ -75,32 +79,34 @@
             flex: 1;
             min-height: 0;
             overflow-y: auto;
-            padding: 6px 2px;
+            padding: 8px 2px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
         }
 
         /* ===== Note Bubble ===== */
         .note {
             align-self: center;
-            background: linear-gradient(180deg,
-                    rgba(255, 246, 240, 0.95),
-                    rgba(255, 230, 236, 0.9));
-            border-radius: 22px 22px 22px 8px;
-            padding: 16px 18px;
-            max-width: 240px;
+            background:
+                linear-gradient(180deg,
+                    rgba(255, 252, 250, 0.95),
+                    rgba(255, 235, 242, 0.9));
+            border-radius: 26px 26px 26px 10px;
+            padding: 18px 20px;
+            max-width: 250px;
             box-shadow:
-                0 8px 20px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            animation: fadeUp 0.5s ease forwards;
+                0 12px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            animation: fadeUp 0.6s ease forwards;
         }
 
         .note-title {
-            font-size: 15px;
+            font-size: 15.5px;
             font-weight: 600;
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 12px;
+            line-height: 1.7;
+            text-align: center;
         }
 
         /* ===== Checklist ===== */
@@ -108,16 +114,16 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
             font-size: 14.5px;
         }
 
         .checklist .item {
             position: relative;
-            padding-left: 22px;
+            padding-left: 24px;
             cursor: pointer;
-            line-height: 1.6;
-            transition: opacity 0.2s;
+            line-height: 1.7;
+            transition: opacity 0.25s, transform 0.2s;
         }
 
         .checklist .item::before {
@@ -135,47 +141,54 @@
         }
 
         .checklist .item:not(.checked) {
-            opacity: 0.6;
+            opacity: 0.55;
+        }
+
+        .checklist .item:active {
+            transform: scale(0.98);
         }
 
         /* ===== Footer Button ===== */
         .footer {
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         .next-btn {
             width: 100%;
-            padding: 12px 0;
+            padding: 13px 0;
             border-radius: 999px;
             border: none;
-            background: linear-gradient(135deg, #ffd6e3, #fff6f0);
+            background:
+                linear-gradient(135deg, #ffd6e3, #fff6f0);
             font-family: 'Mali', cursive;
-            font-size: 14px;
+            font-size: 14.5px;
             color: #5a3a3a;
             cursor: pointer;
             box-shadow:
-                0 6px 14px rgba(255, 182, 193, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.85);
-            transition: 0.25s;
+                0 8px 20px rgba(255, 182, 193, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .next-btn:hover {
             transform: translateY(-1px);
+            box-shadow:
+                0 10px 24px rgba(255, 182, 193, 0.55);
         }
 
         .next-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
         /* ===== Modal Overlay ===== */
         .modal-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(4px);
             opacity: 0;
             pointer-events: none;
-            transition: 0.3s;
+            transition: 0.35s;
             z-index: 5;
         }
 
@@ -184,44 +197,47 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.95);
-            width: 260px;
-            background: linear-gradient(180deg, #fff, #fff6f0);
-            border-radius: 24px;
-            padding: 20px 18px;
+            transform: translate(-50%, -50%) scale(0.92);
+            width: 270px;
+            background:
+                linear-gradient(180deg, #fff, #fff6f0);
+            border-radius: 26px;
+            padding: 22px 20px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.22);
             opacity: 0;
             pointer-events: none;
-            transition: 0.3s;
+            transition: 0.35s;
             z-index: 6;
         }
 
         .modal-title {
-            font-size: 16px;
+            font-size: 16.5px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .modal-text {
             font-size: 14px;
-            line-height: 1.7;
+            line-height: 1.75;
             opacity: 0.85;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
         }
 
         .modal-btn {
             width: 100%;
-            padding: 12px 0;
+            padding: 13px 0;
             border-radius: 999px;
             border: none;
-            background: linear-gradient(135deg, #ffd6e3, #fff6f0);
+            background:
+                linear-gradient(135deg, #ffd6e3, #fff6f0);
             font-family: 'Mali', cursive;
-            font-size: 14px;
+            font-size: 14.5px;
+            color: #5a3a3a;
             cursor: pointer;
             box-shadow:
-                0 6px 14px rgba(255, 182, 193, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                0 8px 20px rgba(255, 182, 193, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
         }
 
         .modal-overlay.active,
@@ -237,7 +253,7 @@
         @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(6px);
+                transform: translateY(8px);
             }
 
             to {
@@ -246,143 +262,12 @@
             }
         }
 
-        /* ===== ≤ 360px (มือถือจอเล็กมาก) ===== */
-        @media (max-width: 360px) {
-            .phone {
-                transform: scale(0.92);
-            }
-
-            .header h2 {
-                font-size: 16px;
-            }
-
-            .note {
-                padding: 14px 16px;
-            }
-
-            .note-title {
-                font-size: 14px;
-            }
-
-            .checklist {
-                font-size: 13.5px;
-            }
-
-            .next-btn {
-                font-size: 13px;
-                padding: 11px 0;
-            }
-
-            .modal {
-                width: 240px;
-                padding: 18px 16px;
-            }
-        }
-
-        /* ===== 361px – 480px (มือถือทั่วไป) ===== */
-        @media (min-width: 361px) and (max-width: 480px) {
-            .phone {
-                transform: scale(1);
-            }
-
-            .note {
-                max-width: 240px;
-            }
-        }
-
-        /* ===== 481px – 599px (มือถือใหญ่ / tablet เล็ก) ===== */
-        @media (min-width: 481px) and (max-width: 599px) {
-            .phone {
-                transform: scale(1.05);
-            }
-
-            .header h2 {
-                font-size: 18px;
-            }
-
-            .note-title {
-                font-size: 16px;
-            }
-
-            .checklist {
-                font-size: 15px;
-            }
-        }
-
-        /* ===== 600px – 1024px (Tablet / iPad) ===== */
-        @media (min-width: 600px) and (max-width: 1024px) {
-            body {
-                padding: 32px;
-            }
-
-            .phone {
-                width: 360px;
-                height: 680px;
-            }
-
-            .header h2 {
-                font-size: 19px;
-            }
-
-            .note {
-                max-width: 280px;
-            }
-
-            .note-title {
-                font-size: 16.5px;
-            }
-
-            .checklist {
-                font-size: 15.5px;
-            }
-
-            .next-btn {
-                font-size: 15px;
-            }
-
-            .modal {
-                width: 300px;
-            }
-        }
-
-        /* ===== Landscape มือถือ (แนวนอน) ===== */
-        @media (orientation: landscape) and (max-height: 420px) {
-            body {
-                align-items: flex-start;
-                padding-top: 10px;
-            }
-
-            .phone {
-                transform: scale(0.85);
-            }
-
-            .chat {
-                gap: 10px;
-            }
-
-            .note {
-                padding: 14px 16px;
-            }
-
-            .modal {
-                top: 48%;
-            }
-        }
-
-        /* ===== Reduce Motion (Accessibility) ===== */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-        /* ===== Fix iOS Blue Button Text ===== */
+        /* ===== iOS Blue Text Fix ===== */
         button {
             -webkit-appearance: none;
             appearance: none;
+            -webkit-tap-highlight-color: transparent;
             color: #5a3a3a;
-            background-color: transparent;
         }
 
         button:focus,
@@ -391,10 +276,12 @@
             color: #5a3a3a;
         }
 
-        /* ปุ่มใน modal โดยเฉพาะ */
-        .modal-btn {
-            color: #5a3a3a;
-            -webkit-tap-highlight-color: transparent;
+        /* ===== Reduce Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
@@ -403,15 +290,12 @@
 
     <div class="phone">
 
-        <!-- PNG Background -->
         <img src="img/back.png" class="overlay-img">
 
-        <!-- Header -->
         <div class="header">
             <h2>เป้าหมายปีใหม่</h2>
         </div>
 
-        <!-- Chat -->
         <div class="chat">
             <div class="note">
                 <div class="note-title">
@@ -424,18 +308,19 @@
                     <li class="item checked">ใจเย็นกว่านี้</li>
                     <li class="item checked">ทะเลาะให้น้อยลง</li>
                     <li class="item checked">อยู่ข้างๆ กันให้มากขึ้น</li>
+                    <li class="item checked">มีอะไรจะพูดตรงๆ</li>
+                    <li class="item checked">รักเธอให้มากขึ้น</li>
+                    <li class="item checked">พาไปเที่ยวบ่อยๆ</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <button class="next-btn" id="actionBtn">
                 จะทำตามเป้าหมาย
             </button>
         </div>
 
-        <!-- Modal -->
         <div class="modal-overlay" id="modalOverlay"></div>
 
         <div class="modal" id="promiseModal">
@@ -450,14 +335,12 @@
     </div>
 
     <script>
-        // checklist toggle
         document.querySelectorAll(".checklist .item").forEach(item => {
             item.addEventListener("click", () => {
                 item.classList.toggle("checked");
             });
         });
 
-        // button logic
         const btn = document.getElementById("actionBtn");
         const modal = document.getElementById("promiseModal");
         const overlay = document.getElementById("modalOverlay");
