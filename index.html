@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy New Year</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ฟอนต์ -->
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            font-family: 'Mali', cursive;
+            background: linear-gradient(180deg, #f7cfd3, #e6e9f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a4a4a;
+        }
+
+        /* ตัวเครื่องมือถือ */
+        .phone {
+            width: 320px;
+            height: 600px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            padding: 24px 18px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* เวลา */
+        .time {
+            text-align: center;
+            font-size: 52px;
+            font-weight: 600;
+            margin-top: 40px;
+            color: #3a3a3a;
+        }
+
+        .date {
+            text-align: center;
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        /* Notification */
+        .notification {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 18px;
+            padding: 14px 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            animation: floatIn 1.2s ease forwards, pulse 2.5s ease-in-out infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* hover */
+        .notification:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        /* active (ตอนกด) */
+        .notification:active {
+            transform: scale(0.97);
+        }
+
+        .n-title {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .n-message {
+            font-size: 15px;
+            margin-top: 6px;
+            color: #444;
+        }
+
+        /* hint ด้านล่าง (จัดกลางจริง) */
+        .hint {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        /* Animation */
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* animation ชวนกด */
+        @keyframes pulse {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .overlay-img {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        /* ===== ≤ 360px (มือถือจอเล็กมาก) ===== */
+        @media (max-width: 360px) {
+            .phone {
+                transform: scale(0.92);
+            }
+
+            .time {
+                font-size: 46px;
+                margin-top: 32px;
+            }
+
+            .date {
+                margin-bottom: 28px;
+                font-size: 14px;
+            }
+
+            .notification {
+                padding: 12px 14px;
+            }
+        }
+
+        /* ===== 361px – 480px (มือถือทั่วไป) ===== */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .phone {
+                transform: scale(1);
+            }
+
+            .time {
+                font-size: 52px;
+            }
+        }
+
+        /* ===== 481px – 599px (มือถือใหญ่ / tablet เล็ก) ===== */
+        @media (min-width: 481px) and (max-width: 599px) {
+            .phone {
+                transform: scale(1.05);
+            }
+
+            .time {
+                font-size: 56px;
+            }
+        }
+
+        /* ===== 600px – 1024px (Tablet / iPad) ===== */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            body {
+                padding: 40px;
+            }
+
+            .phone {
+                width: 360px;
+                height: 680px;
+                transform: scale(1);
+            }
+
+            .time {
+                font-size: 60px;
+            }
+
+            .date {
+                font-size: 18px;
+            }
+        }
+
+        /* ===== Landscape มือถือ (แนวนอน) ===== */
+        @media (orientation: landscape) and (max-height: 420px) {
+            body {
+                align-items: flex-start;
+                padding-top: 12px;
+            }
+
+            .phone {
+                transform: scale(0.85);
+            }
+
+            .time {
+                margin-top: 24px;
+                font-size: 44px;
+            }
+
+            .date {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* ===== Reduce Motion (Accessibility) ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="phone">
+
+        <!-- PNG ตกแต่ง -->
+        <img src="img/back.png" class="overlay-img">
+
+        <!-- ของเดิม -->
+        <div class="time" id="time">00:00</div>
+        <div class="date">1 มกราคม</div>
+
+        <div class="notification" onclick="openChat()">
+            <div class="n-title">ข้อความจากเค้า</div>
+            <div class="n-message">
+                Happy New Year<br>
+                เค้ามีอะไรอยากบอกกับเธอ
+            </div>
+        </div>
+
+        <div class="hint">แตะเพื่ออ่านข้อความ</div>
+    </div>
+
+
+    <script>
+        function openChat() {
+            window.location.href = "chat.html";
+        }
+
+        const timeEl = document.getElementById("time");
+        const dateEl = document.querySelector(".date");
+
+        const thaiMonths = [
+            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน",
+            "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม",
+            "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+        ];
+
+        function updateDateTime() {
+            const now = new Date();
+
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            timeEl.textContent = `${h}:${m}`;
+
+            const day = now.getDate();
+            const month = thaiMonths[now.getMonth()];
+            const year = now.getFullYear() + 543;
+
+            dateEl.textContent = `${day} ${month} ${year}`;
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+
+</html>

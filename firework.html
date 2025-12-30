@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy New Year</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            font-family: 'Mali', cursive;
+            background: linear-gradient(180deg, #f7cfd3, #e6e9f0);
+            overflow: hidden;
+        }
+
+        /* ===== Scene ===== */
+        .scene {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.85);
+            z-index: 0;
+        }
+
+        /* ===== Night Overlay ===== */
+        .night {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at bottom,
+                    rgba(26, 26, 46, 0.85),
+                    rgba(0, 0, 0, 0.95));
+            opacity: 0;
+            animation: fadeToNight 6s ease forwards;
+            z-index: 1;
+        }
+
+        @keyframes fadeToNight {
+            0% {
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 0.2;
+            }
+
+            60% {
+                opacity: 0.45;
+            }
+
+            100% {
+                opacity: 0.65;
+            }
+        }
+
+        /* ===== Couple Silhouette ===== */
+        .couple {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(80vw, 360px);
+            z-index: 6;
+            /* อยู่หน้าเงา แต่หลังพลุ */
+            pointer-events: none;
+        }
+
+        /* ===== Firework Particle ===== */
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: particleMove 1.8s ease-out forwards;
+
+            box-shadow:
+                0 0 6px currentColor,
+                0 0 14px currentColor,
+                0 0 28px currentColor;
+
+            mix-blend-mode: screen;
+            z-index: 3;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* ===== ≤ 360px (มือถือจอเล็กมาก) ===== */
+        @media (max-width: 360px) {
+            .couple {
+                width: min(90vw, 300px);
+                bottom: -10px;
+            }
+
+            .particle {
+                box-shadow:
+                    0 0 4px currentColor,
+                    0 0 10px currentColor,
+                    0 0 18px currentColor;
+            }
+        }
+
+        /* ===== 361px – 480px (มือถือทั่วไป) ===== */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .couple {
+                width: min(85vw, 320px);
+            }
+        }
+
+        /* ===== 481px – 599px (มือถือใหญ่ / tablet เล็ก) ===== */
+        @media (min-width: 481px) and (max-width: 599px) {
+            .couple {
+                width: min(70vw, 340px);
+            }
+
+            .particle {
+                box-shadow:
+                    0 0 6px currentColor,
+                    0 0 16px currentColor,
+                    0 0 32px currentColor;
+            }
+        }
+
+        /* ===== 600px – 1024px (Tablet / iPad) ===== */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .couple {
+                width: min(55vw, 380px);
+            }
+
+            .night {
+                opacity: 0.75;
+            }
+        }
+
+        /* ===== Landscape มือถือ (แนวนอน) ===== */
+        @media (orientation: landscape) and (max-height: 420px) {
+            .couple {
+                width: min(45vw, 260px);
+                bottom: -20px;
+            }
+
+            .night {
+                opacity: 0.85;
+            }
+
+            .particle {
+                animation-duration: 1.4s;
+            }
+        }
+
+        /* ===== Reduce Motion (Accessibility) ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .night {
+                animation: none;
+                opacity: 0.7;
+            }
+
+            .particle {
+                animation: none;
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="scene"></div>
+    <div class="night"></div>
+
+    <!-- เงาคู่รัก -->
+    <img src="img/love.png" class="couple" alt="couple silhouette">
+
+    <script>
+        const colors = [
+            "#ff4fd8",
+            "#ffe84a",
+            "#4dfff3",
+            "#9b5cff",
+            "#ff9f1c",
+            "#7cff6b",
+            "#ffffff"
+        ];
+
+        /* เริ่มพลุอัตโนมัติหลังไฟดับ */
+        setTimeout(() => {
+            startFireworks();
+        }, 4200);
+
+        function startFireworks() {
+            setInterval(() => {
+                const bursts = 4 + Math.floor(Math.random() * 3);
+                for (let i = 0; i < bursts; i++) {
+                    setTimeout(launchFirework, i * 150);
+                }
+            }, 650);
+        }
+
+        function launchFirework() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight * 0.6 + window.innerHeight * 0.2;
+            explode(x, y);
+        }
+
+        function explode(x, y) {
+            const baseColor = colors[Math.floor(Math.random() * colors.length)];
+
+            createRing(x, y, 26 + Math.floor(Math.random() * 12), 90, baseColor);
+            setTimeout(() => createRing(x, y, 18 + Math.floor(Math.random() * 8), 55, lightenColor(baseColor)), 120);
+            setTimeout(() => createRing(x, y, 10 + Math.floor(Math.random() * 6), 25, "#ffffff"), 240);
+        }
+
+        function createRing(x, y, count, radius, color) {
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.style.background = color;
+
+                const size = Math.random() * 2.5 + 4;
+                particle.style.width = size + "px";
+                particle.style.height = size + "px";
+
+                const angle = (Math.PI * 2 / count) * i;
+                const distance = Math.random() * radius * 0.5 + radius * 0.5;
+
+                particle.style.left = x + "px";
+                particle.style.top = y + "px";
+                particle.style.setProperty("--x", Math.cos(angle) * distance + "px");
+                particle.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1800);
+            }
+        }
+
+        function lightenColor(color) {
+            if (color === "#ffffff") return color;
+            let num = parseInt(color.slice(1), 16);
+            let r = Math.min(255, (num >> 16) + 40);
+            let g = Math.min(255, ((num >> 8) & 255) + 40);
+            let b = Math.min(255, (num & 255) + 40);
+            return "#" + (r << 16 | g << 8 | b).toString(16).padStart(6, "0");
+        }
+    </script>
+
+</body>
+
+</html>
