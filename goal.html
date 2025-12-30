@@ -121,7 +121,7 @@
         }
 
         .checklist .item::before {
-            content: "☑";
+            content: "✓";
             position: absolute;
             left: 0;
             top: 0;
@@ -375,6 +375,26 @@
                 animation: none !important;
                 transition: none !important;
             }
+        }
+
+        /* ===== Fix iOS Blue Button Text ===== */
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            color: #5a3a3a;
+            background-color: transparent;
+        }
+
+        button:focus,
+        button:active {
+            outline: none;
+            color: #5a3a3a;
+        }
+
+        /* ปุ่มใน modal โดยเฉพาะ */
+        .modal-btn {
+            color: #5a3a3a;
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>

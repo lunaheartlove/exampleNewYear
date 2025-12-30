@@ -177,6 +177,29 @@
                 opacity: 0.6;
             }
         }
+
+        /* ===== Make Fireworks Bigger on Mobile ===== */
+        @media (max-width: 480px) {
+            .particle {
+                transform: scale(1.8);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .particle {
+                transform: scale(2);
+                box-shadow:
+                    0 0 10px currentColor,
+                    0 0 26px currentColor,
+                    0 0 52px currentColor;
+            }
+        }
+
+        @media (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+            .particle {
+                transform: scale(2.2);
+            }
+        }
     </style>
 </head>
 
