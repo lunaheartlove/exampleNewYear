@@ -283,6 +283,30 @@
                 transition: none !important;
             }
         }
+
+        /* ===== Fix iOS Button White Highlight ===== */
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            background-clip: padding-box;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: #5a3a3a;
+        }
+
+        /* ปิด tap highlight ตอนแตะ */
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* กัน Safari ใส่สีตอน active */
+        button:active,
+        button:focus {
+            color: #5a3a3a;
+            outline: none;
+            box-shadow: none;
+        }
     </style>
 </head>
 

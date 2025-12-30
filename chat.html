@@ -301,6 +301,27 @@
                 transition: none !important;
             }
         }
+
+        /* ปิด style พื้นฐานของ iOS */
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            background-clip: padding-box;
+            border: none;
+        }
+
+        /* ปิด highlight ตอนแตะ */
+        button,
+        button:focus,
+        button:active {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* ปิด tap highlight (กรอบฟ้า/ขาว) */
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
     </style>
 </head>
 
